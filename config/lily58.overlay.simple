@@ -7,14 +7,12 @@
 &i2c0 {
 	compatible = "nordic,nrf-twim";
 	status = "okay";
-	// Standard I2C pins for Lily58 with nice!nano
-	// Trying alternative pins: 4 & 5 (common for Lily58)
-	sda-pin = <4>;
-	scl-pin = <5>;
+	sda-pin = <6>;
+	scl-pin = <26>;
 	clock-frequency = <100000>;
+};
 
-	// Node for the OLED display (SSD1306)
-	// Trying I2C address 0x3c with different pins
+&i2c0 {
 	oled: ssd1306@3c {
 		compatible = "solomon,ssd1306fb";
 		reg = <0x3c>;
