@@ -2,6 +2,17 @@
 	chosen {
 		zmk,display = &oled;
 	};
+};
+
+&i2c0 {
+	compatible = "nordic,nrf-twim";
+	status = "okay";
+	// Standard I2C pins for Lily58 with nice!nano
+	// If these don't work, common alternatives are:
+	// sda-pin = <4>; scl-pin = <5>;
+	sda-pin = <6>;
+	scl-pin = <26>;
+	clock-frequency = <100000>;
 
 	// Node for the OLED display (SSD1306)
 	// If display doesn't work, try changing reg from 0x3c to 0x3d
@@ -20,15 +31,4 @@
 		com-sequential;
 		prechargep = <0x22>;
 	};
-};
-
-&i2c0 {
-	status = "okay";
-	compatible = "nordic,nrf-twim";
-	// Standard I2C pins for Lily58 with nice!nano
-	// If these don't work, common alternatives are:
-	// sda-pin = <4>; scl-pin = <5>;
-	sda-pin = <6>;
-	scl-pin = <26>;
-	clock-frequency = <100000>;
 };
