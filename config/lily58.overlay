@@ -1,0 +1,34 @@
+/ {
+	chosen {
+		zmk,display = &oled;
+	};
+
+	// Node for the OLED display (SSD1306)
+	// If display doesn't work, try changing reg from 0x3c to 0x3d
+	oled: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		label = "SSD1306";
+		width = <128>;
+		height = <32>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <31>;
+		segment-remap;
+		com-invdir;
+		com-sequential;
+		prechargep = <0x22>;
+	};
+};
+
+&i2c0 {
+	status = "okay";
+	compatible = "nordic,nrf-twim";
+	// Standard I2C pins for Lily58 with nice!nano
+	// If these don't work, common alternatives are:
+	// sda-pin = <4>; scl-pin = <5>;
+	sda-pin = <6>;
+	scl-pin = <26>;
+	clock-frequency = <100000>;
+};
